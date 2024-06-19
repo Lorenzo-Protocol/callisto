@@ -4,6 +4,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/std"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/forbole/juno/v5/types/params"
+
+	lorenzoapp "github.com/Lorenzo-Protocol/lorenzo/app"
 )
 
 // MakeEncodingConfig creates an EncodingConfig to properly handle all the messages
@@ -16,6 +18,19 @@ func MakeEncodingConfig(managers []module.BasicManager) func() params.EncodingCo
 		manager.RegisterLegacyAminoCodec(encodingConfig.Amino)
 		manager.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 		return encodingConfig
+	}
+}
+
+// MakeEncodingConfigLorenzo creates an EncodingConfig to properly handle all the messages
+func MakeEncodingConfigLorenzo(managers []module.BasicManager) func() params.EncodingConfig {
+	return func() params.EncodingConfig {
+		lrzp := lorenzoapp.MakeEncodingConfig()
+		return params.EncodingConfig{
+			InterfaceRegistry: lrzp.InterfaceRegistry,
+			Codec:             lrzp.Codec,
+			TxConfig:          lrzp.TxConfig,
+			Amino:             lrzp.Amino,
+		}
 	}
 }
 

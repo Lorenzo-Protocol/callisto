@@ -27,7 +27,7 @@ func main() {
 
 	parseCfg := parsetypes.NewConfig().
 		WithDBBuilder(database.Builder).
-		WithEncodingConfigBuilder(config.MakeEncodingConfig(getBasicManagers())).
+		WithEncodingConfigBuilder(config.MakeEncodingConfigLorenzo(getBasicManagers())).
 		WithRegistrar(modules.NewRegistrar(getAddressesParser()))
 
 	cfg := cmd.NewConfig("callisto").

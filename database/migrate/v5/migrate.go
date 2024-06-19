@@ -3,7 +3,7 @@ package v5
 import (
 	"fmt"
 
-	utils "github.com/forbole/callisto/v4/modules/utils"
+	"github.com/forbole/callisto/v4/modules/utils"
 	"github.com/forbole/callisto/v4/types"
 )
 
@@ -19,8 +19,7 @@ func (db *Migrator) Migrate() error {
 		err = db.migrateMsgTypes(types.NewMessageType(
 			msgType.Type,
 			utils.GetModuleNameFromTypeURL(msgType.Type),
-			utils.GetMsgFromTypeURL(msgType.Type),
-			msgType.Height))
+			utils.GetMsgFromTypeURL(msgType.Type)))
 
 		if err != nil {
 			return err
@@ -44,10 +43,10 @@ func (db *Migrator) getMsgTypesFromMessageTable() ([]MessageRow, error) {
 // migrateMsgTypes stores the given message type inside the database
 func (db *Migrator) migrateMsgTypes(msg *types.MessageType) error {
 	stmt := `
-INSERT INTO message_type(type, module, label, height) 
-VALUES ($1, $2, $3, $4) 
+INSERT INTO message_type(type, module, label) 
+VALUES ($1, $2, $3) 
 ON CONFLICT (type) DO NOTHING`
 
-	_, err := db.SQL.Exec(stmt, msg.Type, msg.Module, msg.Label, msg.Height)
+	_, err := db.SQL.Exec(stmt, msg.Type, msg.Module, msg.Label)
 	return err
 }

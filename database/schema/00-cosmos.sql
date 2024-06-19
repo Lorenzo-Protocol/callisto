@@ -70,8 +70,8 @@ CREATE TABLE message_type
 (
     type      TEXT   NOT NULL UNIQUE,
     module    TEXT   NOT NULL,
-    label     TEXT   NOT NULL,
-    height    BIGINT NOT NULL
+    label     TEXT   NOT NULL
+    /* height    BIGINT NOT NULL */
 );
 CREATE INDEX message_type_module_index ON message_type (module);
 CREATE INDEX message_type_type_index ON message_type (type);

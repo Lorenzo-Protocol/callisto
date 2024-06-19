@@ -2,6 +2,7 @@
 .vscode/
 .testdata/
 build/
+test/
 
 # Configuration
 .env

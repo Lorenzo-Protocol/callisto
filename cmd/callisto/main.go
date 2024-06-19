@@ -17,6 +17,8 @@ import (
 
 	"github.com/forbole/callisto/v4/database"
 	"github.com/forbole/callisto/v4/modules"
+
+	lorenzoapp "github.com/Lorenzo-Protocol/lorenzo/app"
 )
 
 func main() {
@@ -56,6 +58,7 @@ func main() {
 func getBasicManagers() []module.BasicManager {
 	return []module.BasicManager{
 		simapp.ModuleBasics,
+		lorenzoapp.ModuleBasics,
 	}
 }
 

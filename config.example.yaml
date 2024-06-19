@@ -11,13 +11,13 @@ chain:
     - gov
     - mint
     - slashing
-    # - staking
-    # - distribution # must be after staking
+    - staking
+    - distribution # must be after staking
     - upgrade
     - actions
-    # - fee
-    # - btcstaking
-    # - btclightclient
+#        - fee
+#        - btcstaking
+#        - btclightclient
 node:
   type: remote
   config:
@@ -36,7 +36,7 @@ parsing:
   parse_old_blocks: true
   parse_genesis: true
 database:
-  url: postgresql://lorenzop:lorenzop@localhost:5432/lorenzop?sslmode=disable&search_path=public
+  url: postgresql://lorenzo:lorenzo@localhost:5432/lorenzo?sslmode=disable&search_path=public
   max_open_connections: 1
   max_idle_connections: 1
   partition_size: 100000

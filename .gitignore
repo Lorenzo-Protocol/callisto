@@ -1,7 +1,12 @@
 .idea/
+.vscode/
+.testdata/
 build/
+test/
+data/
 
 # Configuration
+.env
 *.toml
 *.json
 config.yaml

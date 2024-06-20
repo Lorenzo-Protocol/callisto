@@ -3,6 +3,7 @@
 .testdata/
 build/
 test/
+data/
 
 # Configuration
 .env

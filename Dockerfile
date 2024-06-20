@@ -1,11 +1,10 @@
-FROM golang:1.21 AS builder
-RUN apt-get update -y
-RUN apt-get install git -y
-WORKDIR /callisto
+FROM golang:1.21-alpine AS builder
+
+RUN apk add build-base git linux-headers
+WORKDIR /work
 COPY . ./
 RUN make build
 
 FROM alpine:latest
-WORKDIR /callisto
-COPY --from=builder /callisto /usr/bin/callisto
-CMD [ "callisto" ]
+WORKDIR /work
+COPY --from=builder /work/build/callisto /usr/bin/callisto

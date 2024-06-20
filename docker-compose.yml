@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./${ROOT_PATH}/postgredb:/var/lib/postgresql/data
+      - ${DATA_PATH}/postgredb:/var/lib/postgresql/data
 
   hasura:
     image: hasura/graphql-engine:v2.40.0
@@ -24,6 +24,21 @@ services:
       HASURA_GRAPHQL_DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
-      # Only for macos or windows
-      ACTION_BASE_URL: http://host.docker.internal:3001
-      # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+      ACTION_BASE_URL: http://callisto:3030
+
+  callisto:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    depends_on:
+      - hasura
+      - postgres
+    ports:
+      - "3030:3030"
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - ${DATA_PATH}/callisto:/root/.callisto
+    deploy:
+      replicas: 0 # Set replicas to 0 to prevent automatic startup

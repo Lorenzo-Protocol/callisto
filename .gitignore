@@ -3,6 +3,7 @@
 .env
 build/
 data/
+vendor/
 
 # Configuration
 *.toml

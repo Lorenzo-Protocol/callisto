@@ -99,4 +99,4 @@ clean:
 
 create-tables:
 	@echo "Creating tables..."
-	@callisto create-tables
+	@bash ./scripts/create_tables.sh

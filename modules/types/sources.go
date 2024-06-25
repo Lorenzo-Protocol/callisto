@@ -5,7 +5,9 @@ import (
 	"os"
 
 	"cosmossdk.io/simapp"
+	btcstakingtypes "github.com/Lorenzo-Protocol/lorenzo/x/btcstaking/types"
 	"github.com/cometbft/cometbft/libs/log"
+	btcstakingsource "github.com/forbole/callisto/v4/modules/btcstaking/source"
 	"github.com/forbole/juno/v5/node/remote"
 	"github.com/forbole/juno/v5/types/params"
 
@@ -23,6 +25,7 @@ import (
 	banksource "github.com/forbole/callisto/v4/modules/bank/source"
 	localbanksource "github.com/forbole/callisto/v4/modules/bank/source/local"
 	remotebanksource "github.com/forbole/callisto/v4/modules/bank/source/remote"
+	remotebtcstakingsource "github.com/forbole/callisto/v4/modules/btcstaking/source/remote"
 	distrsource "github.com/forbole/callisto/v4/modules/distribution/source"
 	remotedistrsource "github.com/forbole/callisto/v4/modules/distribution/source/remote"
 	govsource "github.com/forbole/callisto/v4/modules/gov/source"
@@ -40,12 +43,13 @@ import (
 )
 
 type Sources struct {
-	BankSource     banksource.Source
-	DistrSource    distrsource.Source
-	GovSource      govsource.Source
-	MintSource     mintsource.Source
-	SlashingSource slashingsource.Source
-	StakingSource  stakingsource.Source
+	BankSource       banksource.Source
+	DistrSource      distrsource.Source
+	GovSource        govsource.Source
+	MintSource       mintsource.Source
+	SlashingSource   slashingsource.Source
+	StakingSource    stakingsource.Source
+	BtcStakingSource btcstakingsource.Source
 }
 
 func BuildSources(nodeCfg nodeconfig.Config, encodingConfig params.EncodingConfig) (*Sources, error) {
@@ -54,7 +58,6 @@ func BuildSources(nodeCfg nodeconfig.Config, encodingConfig params.EncodingConfi
 		return buildRemoteSources(cfg)
 	case *local.Details:
 		return buildLocalSources(cfg, encodingConfig)
-
 	default:
 		return nil, fmt.Errorf("invalid configuration type: %T", cfg)
 	}
@@ -110,11 +113,12 @@ func buildRemoteSources(cfg *remote.Details) (*Sources, error) {
 	}
 
 	return &Sources{
-		BankSource:     remotebanksource.NewSource(source, banktypes.NewQueryClient(source.GrpcConn)),
-		DistrSource:    remotedistrsource.NewSource(source, distrtypes.NewQueryClient(source.GrpcConn)),
-		GovSource:      remotegovsource.NewSource(source, govtypesv1.NewQueryClient(source.GrpcConn)),
-		MintSource:     remotemintsource.NewSource(source, minttypes.NewQueryClient(source.GrpcConn)),
-		SlashingSource: remoteslashingsource.NewSource(source, slashingtypes.NewQueryClient(source.GrpcConn)),
-		StakingSource:  remotestakingsource.NewSource(source, stakingtypes.NewQueryClient(source.GrpcConn)),
+		BankSource:       remotebanksource.NewSource(source, banktypes.NewQueryClient(source.GrpcConn)),
+		DistrSource:      remotedistrsource.NewSource(source, distrtypes.NewQueryClient(source.GrpcConn)),
+		GovSource:        remotegovsource.NewSource(source, govtypesv1.NewQueryClient(source.GrpcConn)),
+		MintSource:       remotemintsource.NewSource(source, minttypes.NewQueryClient(source.GrpcConn)),
+		SlashingSource:   remoteslashingsource.NewSource(source, slashingtypes.NewQueryClient(source.GrpcConn)),
+		StakingSource:    remotestakingsource.NewSource(source, stakingtypes.NewQueryClient(source.GrpcConn)),
+		BtcStakingSource: remotebtcstakingsource.NewSource(source, btcstakingtypes.NewQueryClient(source.GrpcConn)),
 	}, nil
 }

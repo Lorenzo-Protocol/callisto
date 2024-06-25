@@ -1,0 +1,22 @@
+table:
+  name: btc_staking_mint
+  schema: public
+object_relationships:
+  - name: block
+    using:
+      foreign_key_constraint_on: height
+select_permissions:
+  - permission:
+      allow_aggregations: false
+      columns:
+        - tx_hash
+        - height
+        - signer
+        - receiver_name
+        - receiver_btc_address
+        - receiver_eth_address
+        - amount
+        - btc_staking_tx_hash
+      filter: {}
+      limit: 100
+    role: anonymous

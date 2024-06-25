@@ -1,12 +1,10 @@
 .idea/
 .vscode/
-.testdata/
+.env/
 build/
-test/
 data/
 
 # Configuration
-.env
 *.toml
 *.json
 config.yaml

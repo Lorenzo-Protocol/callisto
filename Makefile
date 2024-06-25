@@ -92,3 +92,11 @@ format:
 clean:
 	rm -f tools-stamp ./build/**
 .PHONY: clean
+
+###############################################################################
+###                                  Scripts                                ###
+###############################################################################
+
+create-tables:
+	@echo "Creating tables..."
+	@callisto create-tables

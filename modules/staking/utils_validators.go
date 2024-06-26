@@ -273,7 +273,8 @@ func (m *Module) updateValidatorStatusAndVP(height int64, validators []stakingty
 	votingPowers := make([]types.ValidatorVotingPower, len(validators))
 	statuses := make([]types.ValidatorStatus, len(validators))
 
-	for index, validator := range validators {
+	for index := 0; index < len(validators); index++ {
+		validator := validators[index]
 		consAddr, err := validator.GetConsAddr()
 		if err != nil {
 			return err

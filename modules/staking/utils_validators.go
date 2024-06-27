@@ -246,7 +246,8 @@ func (m *Module) updateProposalValidatorStatusSnapshot(
 	height int64, proposalID uint64, validators []stakingtypes.Validator) error {
 	snapshots := make([]types.ProposalValidatorStatusSnapshot, len(validators))
 
-	for index, validator := range validators {
+	for index := 0; index < len(validators); index++ {
+		validator := validators[index]
 		consAddr, err := validator.GetConsAddr()
 		if err != nil {
 			return err
@@ -255,7 +256,7 @@ func (m *Module) updateProposalValidatorStatusSnapshot(
 		snapshots[index] = types.NewProposalValidatorStatusSnapshot(
 			proposalID,
 			consAddr.String(),
-			validator.Tokens.Int64(),
+			&validator.Tokens,
 			validator.Status,
 			validator.Jailed,
 			height,

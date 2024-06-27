@@ -207,7 +207,7 @@ func NewProposalStakingPoolSnapshot(proposalID uint64, pool *PoolSnapshot) Propo
 type ProposalValidatorStatusSnapshot struct {
 	ProposalID           uint64
 	ValidatorConsAddress string
-	ValidatorVotingPower int64
+	ValidatorVotingPower *sdk.Int
 	ValidatorStatus      stakingtypes.BondStatus
 	ValidatorJailed      bool
 	Height               int64
@@ -217,7 +217,7 @@ type ProposalValidatorStatusSnapshot struct {
 func NewProposalValidatorStatusSnapshot(
 	proposalID uint64,
 	validatorConsAddr string,
-	validatorVotingPower int64,
+	validatorVotingPower *sdk.Int,
 	validatorStatus stakingtypes.BondStatus,
 	validatorJailed bool,
 	height int64,

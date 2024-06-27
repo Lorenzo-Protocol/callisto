@@ -21,7 +21,7 @@ func (m *Module) RegisterPeriodicOperations(scheduler *gocron.Scheduler) error {
 	}
 
 	// refresh proposal validators status snapshots every 5 mins
-	if _, err := scheduler.Every(5).Minutes().Do(func() {
+	if _, err := scheduler.Every(1).Minutes().Do(func() {
 		utils.WatchMethod(m.UpdateValidatorStatuses)
 	}); err != nil {
 		return fmt.Errorf("error while setting up gov period operations: %s", err)

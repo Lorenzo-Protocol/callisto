@@ -12,6 +12,7 @@ import (
 
 	parseauth "github.com/forbole/callisto/v4/cmd/parse/auth"
 	parsebank "github.com/forbole/callisto/v4/cmd/parse/bank"
+	parseutils "github.com/forbole/callisto/v4/cmd/parse/customized"
 	parsedistribution "github.com/forbole/callisto/v4/cmd/parse/distribution"
 	parsefeegrant "github.com/forbole/callisto/v4/cmd/parse/feegrant"
 	parsegov "github.com/forbole/callisto/v4/cmd/parse/gov"
@@ -40,6 +41,7 @@ func NewParseCmd(parseCfg *parse.Config) *cobra.Command {
 		parsepricefeed.NewPricefeedCmd(parseCfg),
 		parsestaking.NewStakingCmd(parseCfg),
 		parsetransaction.NewTransactionsCmd(parseCfg),
+		parseutils.NewUtilsCmd(parseCfg),
 	)
 
 	return cmd

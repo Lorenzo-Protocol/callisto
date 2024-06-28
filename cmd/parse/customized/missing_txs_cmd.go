@@ -1,7 +1,6 @@
 package customized
 
 import (
-	"fmt"
 	"sort"
 	"strconv"
 	"strings"
@@ -9,6 +8,7 @@ import (
 	parsecmdtypes "github.com/forbole/juno/v5/cmd/parse/types"
 	"github.com/forbole/juno/v5/parser"
 	"github.com/forbole/juno/v5/types/config"
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
 
@@ -55,15 +55,19 @@ callisto parse utils handle-missing-txs "1, 2, 3, 4, 5"
 			}
 
 			sort.Slice(heights, func(i, j int) bool { return heights[i] < heights[j] })
-			fmt.Println("Processing heights: ", heights)
+			log.Info().Msgf("Processing heights: %v", heights)
 
+			unhandles := make([]int64, 0)
 			for _, h := range heights {
-				fmt.Printf("Processing height %d\n: ", h)
+				log.Info().Int64("height", h).Msg("processing transactions...")
 				err = worker.ProcessTransactions(h)
 				if err != nil {
-					return fmt.Errorf("error while re-fetching transactions of height %d: %s", h, err)
+					log.Error().Msgf("error while re-fetching transactions of height %d: %s", h, err)
+					unhandles = append(unhandles, h)
 				}
 			}
+			log.Info().Msgf("Unprocessed heights: %v", unhandles)
+
 			return nil
 		},
 	}

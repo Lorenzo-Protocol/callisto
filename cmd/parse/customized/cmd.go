@@ -8,11 +8,12 @@ import (
 func NewUtilsCmd(parseConfig *parsecmdtypes.Config) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "utils",
-		Short: "Utilities that doesn't affect database",
+		Short: "Customized utilities",
 	}
 
 	cmd.AddCommand(
 		newMissingBlocksCmd(parseConfig),
+		newMissingTransactionsCmd(parseConfig),
 	)
 
 	return cmd

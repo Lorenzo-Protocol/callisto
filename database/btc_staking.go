@@ -18,9 +18,9 @@ VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 		txHash,
 		height,
 		signer,
-		record.BtcReceiverName,
-		record.BtcReceiverAddr,
-		"0x"+hex.EncodeToString(record.MintToAddr),
+		record.AgentName,
+		record.AgentBtcAddr,
+		"0x"+hex.EncodeToString(record.ReceiverAddr),
 		record.Amount,
 		(chainhash.Hash)(record.TxHash).String(),
 	)

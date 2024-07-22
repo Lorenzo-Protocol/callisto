@@ -5,7 +5,7 @@ go 1.20
 require (
 	cosmossdk.io/math v1.2.0
 	cosmossdk.io/simapp v0.0.0-20230608160436-666c345ad23d
-	github.com/Lorenzo-Protocol/lorenzo v1.2.1
+	github.com/Lorenzo-Protocol/lorenzo v1.2.2-0.20240722064846-91e040ce0427
 	github.com/btcsuite/btcd/chaincfg/chainhash v1.1.0
 	github.com/cometbft/cometbft v0.37.2
 	github.com/cosmos/cosmos-sdk v0.47.4

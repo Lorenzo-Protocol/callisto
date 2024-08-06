@@ -5,7 +5,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/forbole/juno/v5/types/params"
 
-	lorenzoapp "github.com/Lorenzo-Protocol/lorenzo/app"
+	lorenzoapp "github.com/Lorenzo-Protocol/lorenzo/v2/app"
 )
 
 // MakeEncodingConfig creates an EncodingConfig to properly handle all the messages

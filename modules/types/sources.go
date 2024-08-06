@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"cosmossdk.io/simapp"
-	btcstakingtypes "github.com/Lorenzo-Protocol/lorenzo/x/btcstaking/types"
+	btcstakingtypes "github.com/Lorenzo-Protocol/lorenzo/v2/x/btcstaking/types"
 	"github.com/cometbft/cometbft/libs/log"
 	btcstakingsource "github.com/forbole/callisto/v4/modules/btcstaking/source"
 	"github.com/forbole/juno/v5/node/remote"

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	btcstakingtypes "github.com/Lorenzo-Protocol/lorenzo/x/btcstaking/types"
+	btcstakingtypes "github.com/Lorenzo-Protocol/lorenzo/v2/x/btcstaking/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

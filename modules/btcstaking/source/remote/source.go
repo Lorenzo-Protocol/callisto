@@ -3,7 +3,7 @@ package remote
 import (
 	"github.com/forbole/juno/v5/node/remote"
 
-	btcstakingtypes "github.com/Lorenzo-Protocol/lorenzo/v2/x/btcstaking/types"
+	btcstakingtypes "github.com/Lorenzo-Protocol/lorenzo/v3/x/btcstaking/types"
 	btcstakingsource "github.com/forbole/callisto/v4/modules/btcstaking/source"
 )
 

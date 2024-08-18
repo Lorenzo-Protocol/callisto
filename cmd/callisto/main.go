@@ -18,7 +18,7 @@ import (
 	"github.com/forbole/callisto/v4/database"
 	"github.com/forbole/callisto/v4/modules"
 
-	lorenzoapp "github.com/Lorenzo-Protocol/lorenzo/v2/app"
+	lorenzoapp "github.com/Lorenzo-Protocol/lorenzo/v3/app"
 )
 
 func main() {

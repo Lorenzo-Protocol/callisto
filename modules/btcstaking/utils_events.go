@@ -3,7 +3,7 @@ package btcstaking
 import (
 	"fmt"
 
-	btcstakingtypes "github.com/Lorenzo-Protocol/lorenzo/v2/x/btcstaking/types"
+	btcstakingtypes "github.com/Lorenzo-Protocol/lorenzo/v3/x/btcstaking/types"
 	abci "github.com/cometbft/cometbft/abci/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	eventsutil "github.com/forbole/callisto/v4/utils/events"

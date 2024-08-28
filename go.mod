@@ -382,4 +382,4 @@ replace (
 	golang.org/x/exp => golang.org/x/exp v0.0.0-20230425010034-47ecfdc1ba53
 )
 
-replace github.com/forbole/juno/v5 => github.com/orisalden/juno/v5 v5.0.0-20240702092107-43f6ddbad0de
+replace github.com/forbole/juno/v5 => github.com/Lorenzo-Protocol/juno/v5 v5.2.1-0.20240702092107-43f6ddbad0de
